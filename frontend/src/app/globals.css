@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #FFE500;
+  --color-secondary: #0058be;
+  --color-accent: #f472b6;
+  --color-mint: #a3e635;
+  --color-orange: #fb923c;
+  --color-lavender: #c084fc;
+  --color-bg-light: #fff9ea;
+  --color-bg-dark: #1A1A1A;
+  --color-text-dark: #1e1c10;
+  --color-text-light: #F5F5F5;
+  --color-border: #1A1A1A;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-headline: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+:root {
+  --background: var(--color-bg-light);
+  --foreground: var(--color-text-dark);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* Neobrutalism Utilities */
+@layer utilities {
+  .neo-border {
+    @apply border-[3px] border-border;
+  }
+  
+  .neo-shadow {
+    box-shadow: 8px 8px 0px var(--color-border);
+  }
+  
+  .neo-shadow-hover {
+    box-shadow: 4px 4px 0px var(--color-border);
+    transform: translate(4px, 4px);
+  }
+  
+  .neo-shadow-active {
+    box-shadow: 0px 0px 0px var(--color-border);
+    transform: translate(8px, 8px);
+  }
+
+  /* Reusable interactive button: hover shrinks shadow + translates, active = fully pressed in */
+  .neo-btn {
+    box-shadow: 8px 8px 0px #1A1A1A;
+    transition: box-shadow 0.1s ease, transform 0.1s ease;
+  }
+  .neo-btn:hover {
+    box-shadow: 4px 4px 0px #1A1A1A;
+    transform: translate(4px, 4px);
+  }
+  .neo-btn:active {
+    box-shadow: 0px 0px 0px #1A1A1A;
+    transform: translate(8px, 8px);
+  }
+
+  .text-stroke-3 {
+    -webkit-text-stroke: 3px var(--color-border);
+    text-stroke: 3px var(--color-border);
+    color: transparent;
+  }
+
+  .title-shadow {
+    text-shadow: 4px 4px 0 var(--color-primary);
+  }
+
+  .grain-bg::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
