@@ -81,12 +81,10 @@ export function Services() {
                 >
                   {service.icon}
                 </span>
-                {/* @ts-ignore */}
                 <h3 className={`font-display text-2xl font-black uppercase mb-3 ${service.borderColor} pb-2`}>
-                  {t(`services.${service.id}.title`)}
+                  {t(`services.${service.id}.title` as any)}
                 </h3>
-                {/* @ts-ignore */}
-                <p className="font-body text-base font-bold">{t(`services.${service.id}.desc`)}</p>
+                <p className="font-body text-base font-bold">{t(`services.${service.id}.desc` as any)}</p>
               </div>
             </ScrollReveal>
           ))}
